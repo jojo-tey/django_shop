@@ -10,3 +10,11 @@ class Product(models.Model):
     stock = models.IntegerField(verbose_name='Stock')
     register_date = models.DateTimeField(
         auto_now_add=True, verbose_name='Date')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        db_table = 'shop_product'
+        verbose_name = 'Product'
+        verbose_name_plural = 'Products'
