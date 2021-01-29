@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% load humanize %}
 {% block contents %}
-Here is Product page
 <div class="row mt-5">
   <div class="col-12">
     <table class="table table-light">
@@ -9,17 +8,17 @@ Here is Product page
         <tr>
           <th scope="cal">#</th>
           <th scope="cal">Product Name</th>
-          <th scope="cal">Price</th>
+          <th scope="cal">Quantity</th>
           <th scope="cal">Date</th>
         </tr>
       </thead>
       <tbody class="text-dark">
-        {% for product in product_list %}
+        {% for order in order_list %}
         <tr>
           <th scope="raw">{{ product.id }}</th>
-          <th><a href="/product/{{ product.id }}">{{ product.name }}</a></th>
-          <th>{{ product.price|intcomma }}€</th>
-          <th>{{ product.register_date|date:'Y-m-d H:i'}}</th>
+          <th>{{ order.product }}</th>
+          <th>{{ order.quantity|intcomma }}</th>
+          <th>{{ order.register_date|date:'Y-m-d H:i'}}</th>
         </tr>
         {% endfor %}
       </tbody>
