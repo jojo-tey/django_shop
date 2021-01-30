@@ -1,17 +1,20 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import FormView
 from django.views.generic import ListView
+from django.utils.decorators import method_decorator
+from user.decorators import login_required
 from .forms import RegisterForm
 from .models import Order
 # Create your views here.
 
 
+@method_decorator(login_required, name='dispatch')
 class OrderCreate(FormView):
     form_class = RegisterForm
     success_url = '/product/'
 
     def form_invalid(self, form):
-        return redirect('/product/' + form.product)
+        return redirect('/product/' + str(form.product))
 
     def get_form_kwargs(self, **kwargs):
         kw = super().get_form_kwargs(**kwargs)
@@ -21,6 +24,7 @@ class OrderCreate(FormView):
         return kw
 
 
+@method_decorator(login_required, name='dispatch')
 class OrderList(ListView):
     template_name = 'order.html'
     context_object_name = 'order_list'

@@ -2,6 +2,7 @@ from django import forms
 from .models import Order
 from product.models import Product
 from user.models import User
+from django.db import transaction
 
 
 class RegisterForm(forms.Form):
@@ -24,13 +25,17 @@ class RegisterForm(forms.Form):
         user = self.request.session.get('user')
 
         if quantity and product and user:
-            order = Order(
-                quantity=quantity,
-                product=Product.objects.get(pk=product),
-                user=User.objects.get(email=user)
-            )
-            order.save()
+            with transaction.atomic():
+                prod = Product.objects.get(pk=product)
+                order = Order(
+                    quantity=quantity,
+                    product=prod,
+                    user=User.objects.get(email=user)
+                )
+                order.save()
+                prod.stock -= quantity
+                prod.save()
         else:
-            self.product = Product
+            self.product = product
             self.add_error('quantity', 'No result')
             self.add_error('product', 'No result')

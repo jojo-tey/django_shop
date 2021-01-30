@@ -30,6 +30,7 @@
 
         <li class="list-group-item">Price : {{ product.price|intcomma }}€</li>
         <li class="list-group-item">Date : {{ product.register_date|date:'Y-m-d H:i'}}</li>
+        <li class="list-group-item">Stock : {{ product.stock|intcomma }}</li>
         <li class="list-group-item">Detail : {{ product.description|safe }}</li>
       </ul>
     </div>

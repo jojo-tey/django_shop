@@ -5,7 +5,9 @@ from django.db import models
 
 class User(models.Model):
     email = models.EmailField(verbose_name='Email')
-    password = models.CharField(max_length=64, verbose_name='Password')
+    password = models.CharField(max_length=128, verbose_name='Password')
+    level = models.CharField(max_length=8, verbose_name='level', choices=(
+        ('admin', 'admin'),  ('user', 'user')))
     register_date = models.DateTimeField(
         auto_now_add=True, verbose_name='Date')
 
