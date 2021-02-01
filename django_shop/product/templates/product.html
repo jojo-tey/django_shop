@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+
 {% load humanize %}
 {% block header %}
 <script>
@@ -19,13 +20,24 @@
   $(document).ready(function () {
   });
 </script>
+
 {% endblock %}
 {% block contents %}
-Here is Product page
+
+
+<div class="row mt-5 justify-content-center">
+  <h1>Current Product</h1>
+</div>
+<div class="row justify-content-end">
+  <div class="col-2">
+<a href="/logout" class="btn btn-primary btn-lg btn-block mt-5 active" role="button" aria-pressed="true" style="background-color:tomato;">Logout</a>
+  </div>
+</div>
+
 <div class="row mt-5">
   <div class="col-12">
     <table class="table table-light">
-      <thead class="thead-light">
+      <thead class="table-primary">
         <tr>
           <th scope="cal">#</th>
           <th scope="cal">Product Name</th>

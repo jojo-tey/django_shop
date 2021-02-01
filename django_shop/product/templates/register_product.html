@@ -24,7 +24,7 @@
       {% csrf_token %}
       {% for field in form %}
       <div class="form-group mt-5">
-        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {% comment %} <label for="{{ field.id_for_label }}">{{ field.label }}</label> {% endcomment %}
         {% ifequal field.name 'description' %}
         <textarea class="form-control" name="{{ field.name }}" id="{{ field.id_for_label }}"></textarea>
         {% else %}
@@ -36,7 +36,7 @@
       {% endif %}
       {% endfor %}
 
-      <button type="submit" class="btn btn-primary mt-5">Create</button>
+      <button type="submit" class="btn btn-primary mt-5" style="font-size: 1.5rem">Create</button>
     </form>
   </div>
 </div>

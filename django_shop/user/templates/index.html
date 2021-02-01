@@ -1,4 +1,15 @@
 {% extends "base.html" %}
+{% block header %}
+<link rel="stylesheet" href="/static/index.css">
+{% endblock %}
 {% block contents %}
-Hello, {{ email }} !
+
+
+<div class="icon"><i class="fas fa-laptop-code"></i><br/><br/><h1>EDU-SHOP</h1></div>
+<div class="btns">
+<a href="/login" class="btn btn-primary btn-lg btn-block mt-5 active" role="button" aria-pressed="true">Login</a>
+<a href="/register" class="btn btn-primary btn-lg btn-block mt-5 active" role="button" aria-pressed="true">Register</a>
+</div>
+
+
 {% endblock %}

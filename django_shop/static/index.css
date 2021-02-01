@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  font-size: 2rem;
+}
+
+.row, .col, .form-group, .from-container {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+
+i.fas {
+  color: #55b298;
+  font-size: 6em;
+  margin-bottom: 2rem;
+}
+
+
+.btns {
+  width: 50%;
+}
+
+.btn{
+  font-size: 2rem;
+}
+
+
