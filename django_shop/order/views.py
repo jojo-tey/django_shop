@@ -24,9 +24,13 @@ class OrderCreate(FormView):
                 product=prod,
                 user=User.objects.get(email=self.request.session.get('user'))
             )
-            order.save()
-            prod.stock -= int(form.data.get('quantity'))
-            prod.save()
+
+            if int(prod.stock) - int(order.quantity) < 0:
+                pass
+            else:
+                order.save()
+                prod.stock -= int(form.data.get('quantity'))
+                prod.save()
 
         return super().form_valid(form)
 

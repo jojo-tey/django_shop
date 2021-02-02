@@ -1,11 +1,40 @@
 {% extends "base.html" %}
+
 {% load humanize %}
+{% block header %}
+<script>
+  function product_detail(id) {
+    $.ajax({
+      url: "/api/product/" + id,
+      success: function (result) {
+        $("#product-" + id).popover({
+          html: true,
+          content: result.name + "<br>" + result.price
+        }).popover('show');
+      }
+    })
+  }
+  function product_leave(id) {
+    $("#product-" + id).popover('hide')
+  }
+  $(document).ready(function () {
+  });
+</script>
+
+{% endblock %}
+
 {% block contents %}
-Here is Product page
-<div class="row mt-5">
-  <div class="col-12">
+
+
+<div class="row mt-5 justify-content-center">
+  <h1>Current Product</h1>
+</div>
+
+
+<div class="row mt-5 justify-content-center">
+  <div class="col-8">
     <table class="table table-light">
-      <thead class="thead-light">
+      <thead class="table-primary">
         <tr>
           <th scope="cal">#</th>
           <th scope="cal">Product Name</th>
@@ -17,7 +46,9 @@ Here is Product page
         {% for product in product_list %}
         <tr>
           <th scope="raw">{{ product.id }}</th>
-          <th><a href="/product/{{ product.id }}">{{ product.name }}</a></th>
+          <th><a id="product-{{ product.id }}" onmouseenter="product_detail({{ product.id }})"
+              onmouseleave="product_leave({{ product.id }})" href="/product/{{ product.id }}">{{ product.name }}</a>
+          </th>
           <th>{{ product.price|intcomma }}€</th>
           <th>{{ product.register_date|date:'Y-m-d H:i'}}</th>
         </tr>

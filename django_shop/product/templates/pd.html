@@ -1,0 +1,24 @@
+<div class="jumbotron">
+  <h1 class="display-3">{{ product.name }}</h1>
+  <p class="lead"></p>
+  <hr class="my-4">
+  <form method="POST" , action="/order/create/">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form-group">
+              {% ifnotequal field.name 'product' %}
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {% endifnotequal %}
+              <input type="{{ field.field.widget.input_type }}" class="form-control" id="{{ field.id_for_label }}"
+                placeholer="{{ field.label }}" name="{{ field.name }}" value="{% ifequal field.name 'product'%}{{product.id}}{% endifequal %}" />
+            </div>
+            {% if field.errors %}
+            <span style="color: crimson">{{ field.errors }}</span>
+            {% endif %}
+            {% endfor %}
+            
+          </form>
+  <p class="lead">
+    <button type="submit" class="btn btn-primary">Purchase</button>
+  </p>
+</div>

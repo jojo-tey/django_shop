@@ -7,7 +7,11 @@ from django.contrib.auth.hashers import make_password
 
 
 def index(request):
-    return render(request, 'index.html', {'email': request.session.get('user')})
+    user = request.session.get('user')
+    if user:
+        return redirect('/product')
+    else:
+        return render(request, 'index.html', {'email': request.session.get('user')})
 
 
 class RegisterView(FormView):
@@ -29,7 +33,7 @@ class RegisterView(FormView):
 class LoginView(FormView):
     template_name = 'login.html'
     form_class = LoginForm
-    success_url = '/'
+    success_url = '/product'
 
     def form_valid(self, form):
         self.request.session['user'] = form.data.get('email')

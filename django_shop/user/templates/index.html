@@ -1,4 +1,21 @@
-{% extends "base.html" %}
+{% extends "loginbase.html" %}
+{% block header %}
+<link rel="stylesheet" href="/static/index.css">
+{% endblock %}
 {% block contents %}
-Hello, {{ email }} !
+
+<div class="container d-flex flex-column text-center justify-content-center">
+
+<div class="row d-flex flex-column  justify-content-center align-items-center text-center mt-5">
+<div class="icon"><i class="fas fa-laptop-code "></i><br /></div>
+  <div class="col-4">
+<a href="/login" class="btn btn-primary btn-lg btn-block mt-5 active" role="button" aria-pressed="true">Login</a>
+<a href="/register" class="btn btn-primary btn-lg btn-block mt-5 active" role="button" aria-pressed="true">Register</a>
+</div>
+  </div>
+</div>
+</div>
+
+
+
 {% endblock %}
